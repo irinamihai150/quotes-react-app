@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./App.css";
 
 // https://whip-cold-pancake.glitch.me/quotes
 function App() {
@@ -12,21 +13,26 @@ function App() {
       .catch((e) => console.log(e.message));
   }, []);
 
-  //  function pickFromArray(data) {
-  //    return data[Math.floor(Math.random() * data.length)];
-  //  }
-  console.log(data);
   let quotes = data;
+  function pickFromArray(data) {
+    return data[Math.floor(Math.random() * data.length)];
+  }
   return (
     <>
+      <button
+        className="btn"
+        style={{ width: 150, height: 30, backgroundColor: "lightblue" }}
+        onClick={pickFromArray}
+      >
+        Click
+      </button>
       {quotes.map(({ quote, author }) => (
         <p
           style={{
-            backgroundColor: "grey",
+            backgroundColor: "#DCDCDC",
             width: 500,
             height: 80,
           }}
-          key={author}
         >
           {" "}
           {quote}.
