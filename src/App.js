@@ -1,45 +1,43 @@
-import { useEffect, useState } from "react";
-import "./App.css";
+import React, { useState, useEffect } from "react";
+import "./App.scss";
 
-// https://whip-cold-pancake.glitch.me/quotes
+const quoteurl = "https://whip-cold-pancake.glitch.me/quotes";
 function App() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    fetch(`https://whip-cold-pancake.glitch.me/quotes`)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-      })
-      .catch((e) => console.log(e.message));
-  }, []);
+  const [quote, setQuote] = useState(
+    "The longer I live, the more I realize the impact of attitude on life"
+  );
+  const [author, setAuthor] = useState("Charless Swindon");
+  const [randomNumber, setRandomNumber] = useState(0);
+  const [quotesArray, setQuotesArray] = useState(null);
 
-  let quotes = data;
-  function pickFromArray(data) {
-    return data[Math.floor(Math.random() * data.length)];
-  }
+  const fetchQuotes = async (url) => {
+    const response = await fetch(url);
+    const parsedJson = await response.json();
+    setQuotesArray(parsedJson.quotes);
+    console.log(parsedJson);
+  };
+  useEffect(() => {
+    fetchQuotes(quoteurl);
+  }, [quoteurl]);
+
+  const getRandomQuote = () => {
+    let randomInteger = Math.floor(quotesArray.length * Math.random());
+    console.log(quotesArray.length);
+    setRandomNumber(randomNumber);
+    setQuote(quotesArray[randomInteger].quote);
+    setAuthor(quotesArray[randomInteger].author);
+  };
+
   return (
-    <>
-      <button
-        className="btn"
-        style={{ width: 150, height: 30, backgroundColor: "lightblue" }}
-        onClick={pickFromArray}
-      >
-        Click
-      </button>
-      {quotes.map(({ quote, author }) => (
-        <p
-          style={{
-            backgroundColor: "#DCDCDC",
-            width: 500,
-            height: 80,
-          }}
-        >
-          {" "}
-          {quote}.
-        </p>
-      ))}
-      );
-    </>
+    <div className="App">
+      <header className="App-header">
+        <button onClick={() => getRandomQuote()}>
+          Generate a random quote
+        </button>
+        <p>"{quote}"</p>
+        <p> - {author}</p>
+      </header>
+    </div>
   );
 }
 
