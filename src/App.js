@@ -7,23 +7,22 @@ function App() {
     "The longer I live, the more I realize the impact of attitude on life"
   );
   const [author, setAuthor] = useState("Charless Swindon");
-  const [randomNumber, setRandomNumber] = useState(0);
+  // const [randomNumber, setRandomNumber] = useState(0);
   const [quotesArray, setQuotesArray] = useState(null);
 
   const fetchQuotes = async (url) => {
     const response = await fetch(url);
     const parsedJson = await response.json();
-    setQuotesArray(parsedJson.quotes);
+    setQuotesArray(parsedJson);
     console.log(parsedJson);
   };
   useEffect(() => {
     fetchQuotes(quoteurl);
-  }, [quoteurl]);
+  }, []);
 
-  const getRandomQuote = () => {
+  let getRandomQuote = () => {
     let randomInteger = Math.floor(quotesArray.length * Math.random());
-    console.log(quotesArray.length);
-    setRandomNumber(randomNumber);
+    // setRandomNumber(randomInteger);
     setQuote(quotesArray[randomInteger].quote);
     setAuthor(quotesArray[randomInteger].author);
   };
@@ -31,11 +30,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={() => getRandomQuote()}>
-          Generate a random quote
-        </button>
-        <p>"{quote}"</p>
-        <p> - {author}</p>
+        <div id="quote-box">
+          {/* <h1> Random Number :{randomNumber}</h1> */}
+          <p id="text">" {quote} "</p>
+          <p id="author"> - {author}</p>
+          <button id="new-quote" onClick={() => getRandomQuote()}>
+            Generate a quote
+          </button>
+        </div>
       </header>
     </div>
   );

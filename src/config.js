@@ -1,0 +1,1 @@
+let url = "https://whip-cold-pancake.glitch.me/quotes";

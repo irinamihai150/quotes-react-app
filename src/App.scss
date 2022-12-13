@@ -4,16 +4,11 @@
 //   margin-right: auto;
 // }
 
-// .btn {
-//   color: rgb(0, 0, 0);
-//   margin-left: 50em;
-//   margin-top: 3em;
-// }
 .App {
   text-align: center;
 }
 .App-header {
-  background-color: aqua;
+  background-color: rgb(179, 243, 243);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -21,4 +16,17 @@
   justify-content: center;
   color: rgb(7, 6, 6);
   font-size: calc(10px +2vmin);
+}
+#quote-box {
+  background-color: rgb(253, 226, 192);
+  border: 2px solid black;
+  border-radius: 2em;
+}
+#quote-box p {
+  padding: 1em;
+}
+#new-quote {
+  margin-bottom: 2em;
+  color: black;
+  color: rgb(0, 0, 0);
 }
