@@ -30,3 +30,18 @@
   color: black;
   color: rgb(0, 0, 0);
 }
+#searchbar {
+  margin-left: 1em;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 1em;
+}
+.home {
+  margin-right: 1em;
+}
+.footer{
+  text-align: center;
+}
