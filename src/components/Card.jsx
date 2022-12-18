@@ -7,7 +7,7 @@ function Card() {
   const [author, setAuthor] = useState("Charless Swindon");
   // const [randomNumber, setRandomNumber] = useState(0);
   const [quotesArray, setQuotesArray] = useState(null);
-  const [query, setQuery] = useState("");
+  const [setQuery] = useState("");
 
   const fetchQuotes = async (url) => {
     const response = await fetch(url);
